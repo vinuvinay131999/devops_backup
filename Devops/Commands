@@ -1,0 +1,262 @@
+	                 Basic Commands
+                 
+  *to check written code use --    https://www.yamllint.com/          
+   *docker inspect kreatio_network              
+                 
+    to chech the ssh key use " cd .ssh"   
+     sudo kill -9 (pid-number)
+          
+    to check previous command use "histroy" 
+    
+   ---------------------------------------------
+   
+  for coping files use =  scp -r <filename> vinay@192.168.15.36:
+  
+  
+    * ls -a    =  will get all files
+   * ls -lrth
+   * ls -lrta
+   * mkdir and  rmdir = make directory and remove directory
+   * touch = to create file
+                 
+* To save the file esc :wq 
+* to show the file data use "cat <file-name>"
+* shift + z+z
+* To delete directory  " rm -rf <directory>"
+* To delete file "rm -f <file-name>"
+ * to delete docker image " docker rmi  (0563ec88b907)" name or id 
+ * to build docker image  = " docker build -t <image-name> . "
+ * to delete docker container = "docker rm -f <conatiner-name>" 
+  
+=============================================
+for container create 
+ * docker run -itd --name vinay image
+* "docker run -itd -p 8080:8080 --name vinay image" (adding port to the container)
+
+**To go inside the  container use this  "docker exec -it <container-name> bash"
+
+==========================================
+      
+        NGINX 
+        
+        
+    http://192.168.15.121:80
+ docker run --name mynginx -p 8080:8080 -d nginx   
+ 
+ unzip the file use this command== "tar xvzf <filename or directory>" or "unzip file-name"
+ 
+check nginx version = "nginx -v"
+check configaration file syntax before reloading = "nginx -t"
+display current configarations = "nginx -T"
+reload nginx " nginx -s reload"
+    -----------------   
+to check nginx logs-  cd /data/kreatio-nginx/nginx_logs/nginx/
+    
+        * tail -10f nginx.error.log
+       
+        CONFIGURATION File
+  location
+  * MAIN file 
+        /etc/nginx/nginx.conf
+        
+   *INcludes 
+        /etc/nginx/conf.d/*.conf     
+        
+================================================================================
+Out side host == sudo vi /etc/hosts
+ inside host ==
+ 
+ 8080:4200 = outside:inside
+
+
+ping vinay.kreatio
+================================================================================
+creating roles
+ 
+ sudo ansible-galaxy init rolename
+  	
+
+  =======================================================================
+  
+   
+       creating docker agent
+       
+  sudo docker run -itd --hostname agent_vinu --dns=192.168.2.1 --name agent_vinay /var/run/docker.sock:/var/run/docker.sock -e GO_SERVER_URL=http://192.168.15.121:8153/go gocd/gocd-agent-ubuntu-20.04:v22.3.0
+
+ios sudo docker run -itd --hostname agent_vinu --dns=192.168.2.1 --name agent_vinay -e GO_SERVER_URL=http://192.168.15.121:8153/go gocd/gocd-agent-ubuntu-20.04:v22.3.0
+========================================================================================================================================
+             git 
+ 
+git add .
+git commit -m "updated | roles"
+git push origin main
+===========================================================================================================
+
+   root user command
+docker exec -it -u root  gocd_agent1 bash
+=======================================
+
+ container always running command
+ 
+ docker update --restart=always <conatiner name>
+ 
+========================================================================================================
+       gocd agent image 
+   
+  docker login -u=kreatio+devopsteam -p=PMRPAQ0T1IWYVOG0ENX4ESZYW8R40G9VH6JQONJXGU99MXZNWXH5R54SI3512GNA quay.io 
+
+       quay.io/kreatio/app:gocd_agent_deploy_21.3.0
+
+
+  sudo docker run -itd --hostname agent_h --dns=192.168.2.1 --name agent_h -v /var/run/docker.sock:/var/run/docker.sock -e GO_SERVER_URL=http://192.168.15.121:8153/go quay.io/kreatio/app:gocd_agent_deploy_21.3.0
+   
+
+
+  docker run -itd --hostname agent_v --dns=192.168.2.1 --name agent_v -e GO_SERVER_URL=http://192.168.15.121:8153/go quay.io/kreatio/app:gocd_agent_deploy_21.3.0
+  
+ -------------------------------------------------------------------------------------
+ 
+   creating gocd agent comment 
+   
+  
+   sudo docker run -itd --hostname 15-121-agent-h --dns=192.168.2.1 --name agent-h -v /var/run/docker.sock:/var/run/docker.sock -v /data/agentdata/ruby-16-z:/godata -e GO_SERVER_URL=https://192.168.35.109:8154/go quay.io/kreatio/app:gocd_agent_16
+
+   -----------------------------------------------------------------------
+   
+sudo docker pull gocd/gocd-agent-ubuntu-20.04:v22.3.0
+======================================================================================
+ encrypyt and decrypt 
+
+ansible-vault encrypt --ask-vault-password <file_name> 
+
+ansible-vault decrypt --ask-vault-password <file_name>
+
+----------------------=========================
+need to cretae api container 
+               db container 
+               need to dump 
+               network same 
+                application should run in local host
+============================================================================================
+docker login -u=kreatio+devopsteam -p=PMRPAQ0T1IWYVOG0ENX4ESZYW8R40G9VH6JQONJXGU99MXZNWXH5R54SI3512GNA quay.io
+
+
+===========================================================================================================
+
+To create network 
+
+docker network create -d bridge kreatio-network
+
+
+To check network 
+
+
+docker network ls
+
+==========================================POSTGRESS =================================================================
+
+
+   to delete database in postgres use =  DROP DATABASE "<database-name>";
+   
+   
+---------------------------------------------------------------------------------------------------------
+      How to create database and restore data  
+
+first we need to create postgres container 
+
+   docker run -p 5432:5432 -v /data/db1/pg_data:/var/lib/postgresql/data -v /home/ruby/DB_backup:/home/DB_backup --name db1 --network kreatio_network quay.io/kreatio/postgres:12.7 /pg-init.sh
+
+   Remove  the  db1
+
+   docker run -itd -p 5432:5432 -v /data/db1/pg_data:/var/lib/postgresql/data -v /home/ruby/DB_backup:/home/DB_backup --name db1 --network kreatio_network quay.io/kreatio/postgres:12.7
+
+
+
+To download /get that file use below command
+
+     vinay@109:~$ cd /home/ruby/DB_backup/
+     
+     vinay@109:/home/ruby/DB_backup$ sudo su
+     
+     [sudo] password for vinay: 
+     
+     root@109:/home/ruby/DB_backup# ls
+      
+     root@109:/home/ruby/DB_backup#  sftp devops@ftp.kreatio.com
+     
+     password :r&KD*5&HUy7#zeAD
+     
+    sftp>  get incisive-cms-stage-dec-19.sql  ( it will download )
+
+
+  
+
+      vinay@109:~$ docker exec -it db1 bash    (inside container )  
+  
+      root@8840feb00a65:/# cd /home/DB_backup 
+      
+      root@8840feb00a65:/home/DB_backup# su postgres
+      
+     $ psql 
+     
+     Password for user postgres password:  not-easily-guessable219nHerhy!K2qap@ 
+     
+   psql (12.7 (Ubuntu 12.7-1.pgdg20.04+1))
+  Type "help" for help.
+
+  postgres=# \l
+                                         List of databases
+        Name        |     Owner      | Encoding |   Collate   |    Ctype    |   Access privileges   
+--------------------+----------------+----------+-------------+-------------+-----------------------
+ demo               | postgres       | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ incisive-cms-stage | incisive-stage | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ postgres           | postgres       | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ template0          | postgres       | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres          +
+                    |                |          |             |             | postgres=CTc/postgres
+ template1          | postgres       | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres          +
+                    |                |          |             |             | postgres=CTc/postgres
+(5 rows)
+
+postgres=# exit
+
+could not save history to file "/home/postgres/.psql_history": No such file or directory
+$ 
+root@8840feb00a65:/home/DB_backup# ls -lrth
+total 1.9G
+-rw-r--r-- 1 root root    0 Feb  2 07:11 db_backup_19.sql
+-rw-r--r-- 1 root root 1.9G Feb  2 13:20 incisive-cms-stage-dec-19.sql
+
+  root@8840feb00a65:/home/DB_backup# pg_restore -h localhost -p 5432 -U incisive-stage -d incisive-cms-stage -v incisive-cms-stage-dec-19.sql
+
+  pg_restore: connecting to database for restore
+
+  Password: RFdFPcEYgt6uVN   (ruby@aspermont-sindbad-api-12-183:~$ cat database.yml )
+   
+
+  pg_restore: creating EXTENSION "pg_stat_statements"
+  pg_restore: creating COMMENT "EXTENSION pg_stat_statements"
+  pg_restore: creating EXTENSION "uuid-ossp"
+  pg_restore: creating COMMENT "EXTENSION "uuid-ossp""
+  pg_restore: creating TABLE "public.accessed_articles"
+  pg_restore: creating TABLE "public.activity_statuses"
+  pg_restore: creating TABLE "public.activity_summaries"
+  pg_restore: creating TABLE "public.activity_types"
+  pg_restore: creating TABLE "public.admin_users"
+
+After restore check properly how much mb created 
+
+  postgres=# \c incisive-cms-stage (database name)
+You are now connected to database "incisive-cms-stage" as user "postgres".
+
+  incisive-cms-stage=# \i incisive-cms-stage-dec-19.sql (filename )
+The input is a PostgreSQL custom-format dump.
+Use the pg_restore command-line client to restore this dump to a database.
+ 
+ 
+incisive-cms-stage=# SELECT pg_size_pretty( pg_database_size('incisive-cms-stage'));
+ pg_size_pretty 
+----------------
+ 5609 MB
+(1 row)
+=====================================================================================================================================================================
+
