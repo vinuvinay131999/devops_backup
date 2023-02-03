@@ -1,0 +1,221 @@
+  =====================================================
+     permission denied error 
+       
+* cd /var/run
+* ls -lrth
+* sudo chown vinuvinay:vinuvinay docker.sock
+* exit 
+
+
+==============================================================
+
+ error: cast between incompatible function types from 'size_t (*)(ngx_http_script_engine_t *)' {aka 'long unsigned int (*)(struct <anonymous> *)'} to 'void (*)(ngx_http_script_engine_t *)' {aka 'void (*)(struct <anonymous> *)'} [-Werror=cast-function-type]
+ 
+ Answer== (void *)
+ example =     code->code = (ngx_http_script_code_pt) (void *)
+                                           ngx_http_script_copy_len_code;
+                                    code->len = len;
+
+ ================================================================
+ 
+ docker: Error response from daemon: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: exec: "/usr/local/openresty/nginx/sbin/nginx": stat /usr/local/openresty/nginx/sbin/nginx: no such file or directory: unknown.
+ 
+ answer:
+ ==================================
+ 
+ vi /usr/local/nginx/conf/nginx.conf
+ ==========================================================================
+ 
+ [emerg] 100#100: unexpected "}" in /etc/nginx/conf.d/default.conf:15
+nginx: [emerg] unexpected "}" in /etc/nginx/conf.d/default.conf:15
+nginx: configuration file /etc/nginx/nginx.conf test failed
+   
+  answer:
+  
+  ==========================================================================
+  
+  nginx: [emerg] location "/50x.html" is outside location "/sample" in /usr/local/openresty/nginx/conf/vhosts/default.conf:21
+  
+ answer : /data/kreatio-nginx/conf/vhosts   comment unwanted data
+ ==========================================================================
+ 
+ An exception occurred during task execution. To see the full traceback, use -vvv. The error was: apt_pkg.Error: E:Malformed entry 1 in list file /etc/apt/sources.list.d/mongodb-org-3.2.list.list (URI parse), E:The list of sources could not be read.
+fatal: [localhost]: FAILED! => {"changed": false, "module_stderr": "Traceback (most recent call last):\n  File \"/root/.ansible/tmp/ansible-tmp-1672040626.6983402-425447-17167684067219/AnsiballZ_apt_repository.py\", line 107, in <module>\n    _ansiballz_main()\n  File \"/root/.ansible/tmp/ansible-tmp-1672040626.6983402-425447-17167684067219/AnsiballZ_apt_repository.py\", line 99, in _ansiballz_main\n    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)\n  File \"/root/.ansible/tmp/ansible-tmp-1672040626.6983402-425447-17167684067219/AnsiballZ_apt_repository.py\", line 47, in invoke_module\n    runpy.run_module(mod_name='ansible.modules.apt_repository', init_globals=dict(_module_fqn='ansible.modules.apt_repository', _modlib_path=modlib_path),\n  File \"/usr/lib/python3.8/runpy.py\", line 207, in run_module\n    return _run_module_code(code, init_globals, run_name, mod_spec)\n  File \"/usr/lib/python3.8/runpy.py\", line 97, in _run_module_code\n    _run_code(code, mod_globals, init_globals,\n  File \"/usr/lib/python3.8/runpy.py\", line 87, in _run_code\n    exec(code, run_globals)\n  File \"/tmp/ansible_apt_repository_payload_axnm30v8/ansible_apt_repository_payload.zip/ansible/modules/apt_repository.py\", line 668, in <module>\n  File \"/tmp/ansible_apt_repository_payload_axnm30v8/ansible_apt_repository_payload.zip/ansible/modules/apt_repository.py\", line 645, in main\n  File \"/usr/lib/python3/dist-packages/apt/cache.py\", line 170, in __init__\n    self.open(progress)\n  File \"/usr/lib/python3/dist-packages/apt/cache.py\", line 232, in open\n    self._cache = apt_pkg.Cache(progress)\napt_pkg.Error: E:Malformed entry 1 in list file /etc/apt/sources.list.d/mongodb-org-3.2.list.list (URI parse), E:The list of sources could not be read.\n", "module_stdout": "", "msg": "MODULE FAILURE\nSee stdout/stderr for the exact error", "rc": 1}
+
+answer= delete the old container and create new
+===========================================================================================================================
+
+fatal: [localhost]: FAILED! => {"changed": false, "cmd": "'$' docker run -itd --name postgres -e POSTGRES_USER=vinuvinay -e POSTGRES_PASSWORD=password -p 5432:5432 postgres:latest", "msg": "[Errno 2] No such file or directory: b'$'", "rc": 2, "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+
+postgres
+
+==============================================--restart unless-stopped===============
+permision dined in virtual machine internet not working
+
+Answer: use bridged newtwork -->settings 
+                               wired connected
+                               wired settings 
+                               settings 
+                               select ipv4
+                               manual 
+                               create ip address  
+ ===================================================================================================
+ container exited after 1 min
+  {"type": "server", "timestamp": "2023-01-05T05:18:50,527Z", "level": "INFO", "component": "o.e.d.DiscoveryModule", "cluster.name": "docker-cluster", "node.name": "719e718cc2aa", "message": "using discovery type [zen] and seed hosts providers [settings]" }
+{"type": "server", "timestamp": "2023-01-05T05:18:51,853Z", "level": "INFO", "component": "o.e.n.Node", "cluster.name": "docker-cluster", "node.name": "719e718cc2aa", "message": "initialized" }
+{"type": "server", "timestamp": "2023-01-05T05:18:51,853Z", "level": "INFO", "component": "o.e.n.Node", "cluster.name": "docker-cluster", "node.name": "719e718cc2aa", "message": "starting ..." }
+{"type": "server", "timestamp": "2023-01-05T05:18:52,036Z", "level": "INFO", "component": "o.e.t.TransportService", "cluster.name": "docker-cluster", "node.name": "719e718cc2aa", "message": "publish_address {172.17.0.3:9300}, bound_addresses {0.0.0.0:9300}" }
+{"type": "server", "timestamp": "2023-01-05T05:18:56,135Z", "level": "INFO", "component": "o.e.b.BootstrapChecks", "cluster.name": "docker-cluster", "node.name": "719e718cc2aa", "message": "bound or publishing to a non-loopback address, enforcing bootstrap checks" }
+ERROR: [2] bootstrap checks failed
+[1]: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
+[2]: the default discovery settings are unsuitable for production use; at least one of [discovery.seed_hosts, discovery.seed_providers, cluster.initial_master_nodes] must be configured
+ERROR: Elasticsearch did not exit normally - check the logs at /usr/share/elasticsearch/logs/docker-cluster.log
+{"type": "server", "timestamp": "2023-01-05T05:18:56,153Z", "level": "INFO", "component": "o.e.n.Node", "cluster.name": "docker-cluster", "node.name": "719e718cc2aa", "message": "stopping ..." }
+{"type": "server", "timestamp": "2023-01-05T05:18:56,195Z", "level": "INFO", "component": "o.e.n.Node", "cluster.name": "docker-cluster", "node.name": "719e718cc2aa", "message": "stopped" }
+{"type": "server", "timestamp": "2023-01-05T05:18:56,195Z", "level": "INFO", "component": "o.e.n.Node", "cluster.name": "docker-cluster", "node.name": "719e718cc2aa", "message": "closing ..." }
+{"type": "server", "timestamp": "2023-01-05T05:18:56,256Z", "level": "INFO", "component": "o.e.n.Node", "cluster.name": "docker-cluster", "node.name": "719e718cc2aa", "message": "closed" }
+{"type": "server", "timestamp": "2023-01-05T05:18:56,313Z", "level": "INFO", "component": "o.e.x.m.p.NativeController", "cluster.name": "docker-cluster", "node.name": "719e718cc2aa", "message": "Native controller process has stopped - no new native processes can be started" }
+
+Answer : sudo sysctl -w vm.max_map_count=262144
+ ===========================================================================================        ===========    
+ 
+ /usr/lib/python2.7/site-packages/ansible/parsing/vault/__init__.py:41: CryptographyDeprecationWarning: Python 2 is no longer supported by the Python core team. Support for it is now deprecated in cryptography, and will be removed in the next release.
+  from cryptography.exceptions import InvalidSignature
+  
+  
+answer : need to go inside the container afther that ssh vinay@192.168.21.21
+          after ....    apk update
+                        apk add ansible
+                        
+                        or try below
+                         
+     sudo apt install python3-pip
+                        
+                        
+ =================================================================================================================================================
+ 
+ [go] Start to build blu-aie/9/blu-aie-stage/5/blu-aie-job on agent_c [/go]
+[go] Task: /bin/bashtook: 0.3s
+[go] Task: /bin/bash -c "ansible-playbook -i hosts/blu-aie/file blu-aie.yml"took: 1.460sexited: 4
+
+PLAY [blu-aie] *****************************************************************
+
+TASK [Gathering Facts] *********************************************************
+fatal: [vboxuser]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: vboxuser@192.168.20.20: Permission denied (publickey,password).", "unreachable": true}
+
+PLAY RECAP *********************************************************************
+vboxuser                   : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+
+[go] Task status: failed, took: 1.460s, exited: 4
+[go] Current job status: failed
+
+
+Answer :
+
+
+=====================================================================================================================================================
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+  amswer : add ssh key in git settings 
+  -----------------------------------------------------------------
+  
+  sudo: parse error in /etc/sudoers near line 29
+sudo: no valid sudoers sources found, quitting
+sudo: unable to initialize policy plugin
+ 
+ 
+answer :run the command  =  pkexec visudo
+---------------------------------------------------------
+
+/bin/bash -c "ansible-playbook -i hosts/demo/file demo.yml"
+/usr/lib/python2.7/site-packages/ansible/parsing/vault/__init__.py:41: CryptographyDeprecationWarning: Python 2 is no longer supported by the Python core team. Support for it is now deprecated in cryptography, and will be removed in the next release.
+  from cryptography.exceptions import InvalidSignature
+  
+  answer : 
+  
+  ===================================================================
+  Error response from daemon: Cannot restart container gocd: driver failed programming external connectivity on endpoint gocd (92d2dfd60ebd34107f2abd7f077aec7e09aa762f6bfed7d10f39a1ab7eb4366b): Error starting userland proxy: listen tcp4 0.0.0.0:8153: bind: address already in use
+ 
+ answer : docker  start <container name>
+ ---------------------------------------------------------------
+ 
+ 
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the RSA key sent by the remote host is
+SHA256:g38Q4Xc1UI4WcClY+GaohmhZSOHbgLo6+eYBFr0Iu6U.
+Please contact your system administrator.
+Add correct host key in /Users/me/.ssh/known_hosts to get rid of this message.
+Offending RSA key in /Users/me/.ssh/known_hosts:10
+RSA host key for rita.cecs.pdx.edu has changed and you have requested strict checking.
+Host key verification failed.
+
+answer : https://cat.pdx.edu/platforms/linux/remote-access/dealing-with-ssh-host-key-changes/
+
+..........................................................................................................---------------------------------
+=======================================================================================================================
+
+Error performing command: --- Command ---
+git ls-remote git@git.kreatio.com:server-automation/playbooks.git	 refs/heads/master
+--- Environment ---
+{}
+--- INPUT ----
+
+
+--- EXIT CODE (128) ---
+--- STANDARD OUT ---
+
+--- STANDARD ERR ---
+STDERR: remote: 
+STDERR: remote: ========================================================================
+STDERR: remote: 
+STDERR: remote: The namespace you were looking for could not be found.
+STDERR: remote: 
+STDERR: remote: ========================================================================
+STDERR: remote: 
+STDERR: fatal: Could not read from remote repository.
+STDERR: 
+STDERR: Please make sure you have the correct access rights
+STDERR: and the repository exists.
+---
+
+Answer = copy git url properly
+
+====================================================================================================================================
+
+/bin/bash -c "ansible-playbook -i hosts/sites/suvarnika/stage site-deploy.yml  -e short_name=\"suvarnika\" -e namespace=wps-stage -e SITE_FOLDER=suvarnika -e env=stage -e PUBLISHER=suvarnika --vault-password-file /home/go/vault_pass.txt -e '@config/sites/suvarnika/$ENV.json'"took: 1.539sexited: 1
+/usr/lib/python2.7/site-packages/ansible/parsing/vault/__init__.py:41: CryptographyDeprecationWarning: Python 2 is no longer supported by the Python core team. Support for it is now deprecated in cryptography, and will be removed in the next release.
+  from cryptography.exceptions import InvalidSignature
+ERROR! Unable to retrieve file contents
+Could not find or access '/godata/pipelines/k8s-suvarnika/kube-deploy/config/sites/suvarnika/$ENV.json' on the Ansible Controller.
+If you are using a module and expect the file to exist on the remote, see the remote_src option
+[go] Task status: failed, took: 1.539s, exited: 1
+
+Answer = $ENV.json here we need to give stage
+
+===============================================================================================================================
+fatal: [investment-suvarnika]: FAILED! => {"changed": false, "checksum": "d8d4e537fbe8b5596b7ccb406a5b59efdf4b7d1d", "msg": "Destination directory ../suvarnika/public does not exist"}
+	to retry, use: --limit @/godata/pipelines/k8s-suvarnika/kube-deploy/site-deploy.retry
+	
+	
+Answer : go inside the agent and check godata > pipelines > project name > ls check wether public is there or not 
+
+========================================================================-----------------------------------------------------------------------------------------------------------------=
+
+
+TASK [common/docker : docker login to quay.io] *********************************fatal: [onereg-backoffice.com]: FAILED! => {"changed": true, "cmd": ["docker", "login", "-u=kreatio+devopsteam", "-p=PMRPAQ0T1IWYVOG0ENX4ESZYW8R40G9VH6JQONJXGU99MXZNWXH5R54SI3512GNA", "quay.io"], "delta": "0:00:26.238405", "end": "2023-01-30 06:19:31.208218", "msg": "non-zero return code", "rc": 1, "start": "2023-01-30 06:19:04.969813", "stderr": "WARNING! Using --password via the CLI is insecure. Use --password-stdin.\nError response from daemon: Get \"https://quay.io/v2/\": net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)", "stderr_lines": ["WARNING! Using --password via the CLI is insecure. Use --password-stdin.", "Error response from daemon: Get \"https://quay.io/v2/\": net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)"], "stdout": "", "stdout_lines": []}    to retry, use: --limit @/godata/pipelines/deployonereg-backoffice/playbooks/onereg-backoffice.retry
+
+Answer : go inside the agent and login with below command 
+
+     
+     docker login -u=kreatio+devopsteam -p=PMRPAQ0T1IWYVOG0ENX4ESZYW8R40G9VH6JQONJXGU99MXZNWXH5R54SI3512GNA quay.io
+
+=======================================================================================================================================================================
+	
