@@ -218,4 +218,17 @@ Answer : go inside the agent and login with below command
      docker login -u=kreatio+devopsteam -p=PMRPAQ0T1IWYVOG0ENX4ESZYW8R40G9VH6JQONJXGU99MXZNWXH5R54SI3512GNA quay.io
 
 =======================================================================================================================================================================
+Error response from daemon: Cannot restart container db1: driver failed programming external connectivity on endpoint db1 (2f91c87cddfffcd87edb5642ac57c6d3fc8be250c83c61980e725c4fcf98804c): Error starting userland proxy: listen tcp4 0.0.0.0:5432: bind: address already in use
+
+answer:  sudo lsof -t -i tcp:5432 -s tcp:listen | sudo xargs kill
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+{"healthy":false,"message":"health_check failed: \n\nMigrations are pending. To resolve this issue, run:\n\n        bin/rails db:migrate RAILS_ENV=production\n\n"}
+
+answer : bin/rails db:migrate RAILS_ENV=production\n\n
+
+
+
+
 	

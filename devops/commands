@@ -1,4 +1,8 @@
 	                 Basic Commands
+	                 
+	                 api
+	                  ui
+	                  central  
                  
   *to check written code use --    https://www.yamllint.com/          
    *docker inspect kreatio_network              
@@ -35,7 +39,21 @@ for container create
 
 **To go inside the  container use this  "docker exec -it <container-name> bash"
 
-==========================================
+
+==================================================CONTAINER create command ==================================================================================
+
+    docker run -itd --network kreatio_network --name chitra-image -p 4000:4000 quay.io/kreatio/app:chitra_image_3099 /bin/bash 
+
+    docker run -itd --name elasticsearch --network kreatio_network -p 9200:9200 docker.elastic.co/elasticsearch/elasticsearch:7.10.2
+    
+  -------------------------------------------------------------------------------------------------------
+    docker run -d --hostname cms-rabbit-host --name cms-rabbit-1 -e RABBITMQ_DEFAULT_USER=cms --network kreatio_network -e RABBITMQ_DEFAULT_PASS=cms -p 5672:5672 -p 15672:15672 -p 15674:15674 quay.io/ kreatio/rabbitmq:3.6.8-official-alpine-with-webstomp
+    
+    docker exec -i cms-rabbit bash -c 'rabbitmq-plugins enable --offline rabbitmq_management' 
+    
+    after that restart cms-rabbit
+---------------------------------------------------------------------------------------------------------
+============================================================================================================================================================
       
         NGINX 
         
@@ -138,6 +156,14 @@ need to cretae api container
                network same 
                 application should run in local host
 ============================================================================================
+   elasticsearch container command
+
+
+docker run -itd --name elasticsearch --network kreatio_network -p 9200:9200 docker.elastic.co/elasticsearch/elasticsearch:7.17.0
+
+
+
+
 docker login -u=kreatio+devopsteam -p=PMRPAQ0T1IWYVOG0ENX4ESZYW8R40G9VH6JQONJXGU99MXZNWXH5R54SI3512GNA quay.io
 
 
@@ -314,6 +340,40 @@ after restore the data refer 183 machine  ( ruby@aspermont-sindbad-api-12-183:/e
  
      docker run --name aspermont_sindbad_ui --network kreatio_network -p 80:80 -itd quay.io/kreatio/app:ASPERMONT_sindbad_ui_stage_8 /bin/bash 
          
+         
+         
+         after that use this command
+         
+          /usr/local/openresty/nginx/public/ASPERMONT/stage/assets/pages # cat login.html | grep api
+          
+          
+        refer ;
+        
+        vinay@109:~$ docker exec -it aspermont_sindbad_ui sh
+/ # cd /usr/local/openresty/nginx/
+conf/          fastcgi_temp/  html/          logs/          modules/       public/        sbin/          scgi_temp/     tmp/           uwsgi_temp/
+/ # cd /usr/local/openresty/nginx/public/ASPERMONT/stage/
+assets/                      stage-sindbad.kreatio.info/
+/ # cd /usr/local/openresty/nginx/public/ASPERMONT/stage/assets/
+kreatio/  layout/   pages/    pixie/    sass/     theme/    tinymce/
+/ # cd /usr/local/openresty/nginx/public/ASPERMONT/stage/assets/pages/
+/usr/local/openresty/nginx/public/ASPERMONT/stage/assets/pages # ls
+404.html         access.html      error.html       jquery.js        landing.html     login.html       primeng.min.css
+/usr/local/openresty/nginx/public/ASPERMONT/stage/assets/pages # vi login.html 
+/usr/local/openresty/nginx/public/ASPERMONT/stage/assets/pages # cat login.html | grep api
+        <form id="loginFormId" action="https://stage-auth.kreatio.com/api/v1/users/authenticate" method="post">
+        <form id="forgotFormId" action="https://stage-auth.kreatio.com/api/v1/users/forgot_password_reset"  method="post">
+        <form id="resetFormId" action="https://stage-auth.kreatio.com/api/v1/users/update_password" method="post">
+                             class="ui-inputtext ui-corner-all ui-state-default ui-widget" title="Password should contain minimum One Capital
+                             class="ui-inputtext ui-corner-all ui-state-default ui-widget" title="Password should contain minimum One Capital
+/usr/local/openresty/nginx/public/ASPERMONT/stage/assets/pages # cat login.html | grep stage
+        <form id="loginFormId" action="https://stage-auth.kreatio.com/api/v1/users/authenticate" method="post">
+        <form id="forgotFormId" action="https://stage-auth.kreatio.com/api/v1/users/forgot_password_reset"  method="post">
+        <form id="resetFormId" action="https://stage-auth.kreatio.com/api/v1/users/update_password" method="post">
+/usr/local/openresty/nginx/public/ASPERMONT/stage/assets/pages # 
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+  
  ========================================================================================================================================================
  
              
