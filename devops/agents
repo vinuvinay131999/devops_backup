@@ -1,8 +1,11 @@
  
-ruby@gocd-ruby-agent--12-83 -----------------> ssh ruby@192.168.12.83
-ruby@aspermont-sindbad-api-12-183 -----------> ssh ruby@192.168.12.183
-ruby@unquote-dummty-stage--12-102 -----------> ssh ruby@192.168.12.102
-ruby@stage-chitra-image--12-154 -------------> ssh ruby@192.168.12.154
+ruby@gocd-ruby-agent--12-83 -----------------> ssh ruby@192.168.12.83 
+ruby@aspermont-sindbad-api-12-183 -----------> ssh ruby@192.168.12.183  ---> aspermont_sindbad_api
+ruby@unquote-dummty-stage--12-102 -----------> ssh ruby@192.168.12.102  ---> db1
+ruby@stage-chitra-assets-12-153 -------------> ssh ruby@192.168.12.153  ---> chitra-assets (document)
+ruby@stage-chitra-image--12-154 -------------> ssh ruby@192.168.12.154  ---> chitra-image
+ruby@stage-chitra-video-12-155 --------------> ssh ruby@192.168.12.155  ---> chitra-video
+ruby@stage-chitra-db--12-156 ----------------> ssh ruby@192.168.12.156
 ruby@cms-feature-branch-12-207 --------------> ssh ruby@192.168.12.207
 ruby@stage-chitra-video-listeners-12-241 ----> ssh ruby@192.168.12.241
 ruby@Dev-feature-12-244 ---------------------> ssh ruby@192.168.12.244
