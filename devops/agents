@@ -6,7 +6,7 @@ ruby@stage-chitra-assets-12-153 -------------> ssh ruby@192.168.12.153  ---> chi
 ruby@stage-chitra-image--12-154 -------------> ssh ruby@192.168.12.154  ---> chitra-image
 ruby@stage-chitra-video-12-155 --------------> ssh ruby@192.168.12.155  ---> chitra-video
 ruby@stage-chitra-db--12-156 ----------------> ssh ruby@192.168.12.156
-ruby@cms-feature-branch-12-207 --------------> ssh ruby@192.168.12.207
+ruby@cms-feature-branch-12-207 --------------> ssh ruby@192.168.12.207  ---> cms
 ruby@stage-chitra-video-listeners-12-241 ----> ssh ruby@192.168.12.241
 ruby@Dev-feature-12-244 ---------------------> ssh ruby@192.168.12.244
 

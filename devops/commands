@@ -186,6 +186,19 @@ docker network ls
    
    
 ---------------------------------------------------------------------------------------------------------
+ 
+ vinay@109:/home/ruby/DB_backup$ sudo sftp kreatioctd@ftp.kreatio.com
+ 
+  kreatioctd@ftp.kreatio.com's password: 
+
+   Connected to ftp.kreatio.com. 
+   sftp> ls -lrth
+   
+    sftp> get db_backup.sql
+
+
+
+
       How to create database and restore data  
 
 first we need to create postgres container 
