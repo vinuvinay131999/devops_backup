@@ -1,8 +1,6 @@
 	                 Basic Commands
 	                 
-	                 api
-	                  ui
-	                  central  
+	         for restoring use screen mode (screen) ctrl +ad
                  
   *to check written code use --    https://www.yamllint.com/          
    *docker inspect kreatio_network              
