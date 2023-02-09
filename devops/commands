@@ -1,6 +1,6 @@
 	                 Basic Commands
 	                 
-	         for restoring use screen mode (screen) ctrl +ad
+   for restoring use screen mode (screen) ctrl +ad
                  
   *to check written code use --    https://www.yamllint.com/          
    *docker inspect kreatio_network              
@@ -10,9 +10,13 @@
           
     to check previous command use "histroy" 
     
-   ---------------------------------------------
+   ---------------------------------------------------------------------------------------
    
   for coping files use =  scp -r <filename> vinay@192.168.15.36:
+  
+  
+  not-easily-guessable219nHerhy!K2qap@
+  
   
   
     * ls -a    =  will get all files
@@ -180,7 +184,20 @@ docker network ls
 ========================================== POSTGRESS =================================================================
 
 
-   to delete database in postgres use =  DROP DATABASE "<database-name>";
+   to delete database in postgres use =  
+    
+    DROP DATABASE "incisive-cms-stage";
+    
+    DROP ROLE "incisive-stage";
+ ---------------------------------------------------------------------------
+ 
+    create database "incisive-cms-stage";
+    
+    CREATE USER "incisive-stage" WITH PASSWORD 'RFdFPcEYgt6uVN';
+    
+    ALTER DATABASE "incisive-cms-stage" OWNER TO "incisive-stage";
+    
+    ALTER USER "incisive-stage" WITH SUPERUSER;
    
    
 ---------------------------------------------------------------------------------------------------------

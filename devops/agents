@@ -1,12 +1,64 @@
  
 ruby@gocd-ruby-agent--12-83 -----------------> ssh ruby@192.168.12.83 
+
 ruby@aspermont-sindbad-api-12-183 -----------> ssh ruby@192.168.12.183  ---> aspermont_sindbad_api
+
 ruby@unquote-dummty-stage--12-102 -----------> ssh ruby@192.168.12.102  ---> db1
+
 ruby@stage-chitra-assets-12-153 -------------> ssh ruby@192.168.12.153  ---> chitra-assets (document)
+
 ruby@stage-chitra-image--12-154 -------------> ssh ruby@192.168.12.154  ---> chitra-image
+
 ruby@stage-chitra-video-12-155 --------------> ssh ruby@192.168.12.155  ---> chitra-video
+
 ruby@stage-chitra-db--12-156 ----------------> ssh ruby@192.168.12.156
+
 ruby@cms-feature-branch-12-207 --------------> ssh ruby@192.168.12.207  ---> cms
+
 ruby@stage-chitra-video-listeners-12-241 ----> ssh ruby@192.168.12.241
+
 ruby@Dev-feature-12-244 ---------------------> ssh ruby@192.168.12.244
+
+
+=========================================  IMAGES  =====================================================================
+
+
+quay.io/kreatio/nginx:1.19.3.1 -----------------------------------------> nginx
+
+quay.io/kreatio/app:DEMO_cms_ui_feature_640 ----------------------------> cms-ui 
+                                                       
+quay.io/kreatio/app:cms_api_DEMO_feature_267cms ------------------------> cms-api
+
+quay.io/kreatio/postgres:12.7 ------------------------------------------> db2                                                         
+   
+quay.io/kreatio/app:chitra_video_2923 ----------------------------------> chitra-assets                                                        
+   
+quay.io/kreatio/app:chitra_video_2923 ----------------------------------> chitra-video                                           
+   
+docker.elastic.co/elasticsearch/elasticsearch:7.10.2 -------------------> elasticsearch                     
+   
+quay.io/kreatio/rabbitmq:3.6.8-official-alpine-with-webstomp -----------> cms-rabbit-1                                             
+  
+quay.io/kreatio/app:chitra_image_3099 ----------------------------------> chitra-image                           
+   
+quay.io/kreatio/app:ASPERMONT_sindbad_ui_stage_8 -----------------------> aspermont_sindbad_ui                                         
+   
+quay.io/kreatio/app:aspermont_sindbad_api_ASPERMONT_stage_15 -----------> aspermont_sindbad_api    
+
+
+
+**************************************************************************************************************************************************************************                                    
+   
+GOCD;- 
+
+
+agents         resources
+======        ========
+254  - 187  - docker
+253  - 234  - ruby
+236  - 85   - deploy-local
+89   - 193   - deploy
+250  - 194   - k8
+255  - 188   - nodes
+
 
